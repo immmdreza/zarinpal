@@ -13,27 +13,43 @@ use super::ApiMethod;
 /// on it when built.
 ///
 /// ```
-/// let zarinpal = Zarinpal::new(...).unwrap();
+/// use zarinpal::prelude::*;
 ///
-/// let built = VerifyPayment::builder()
-///     .amount(10000)
-///     .authority("A00000000000000000000000000217885159")
-///     // Takes a reference to your client.
-///     .zarinpal(&zarinpal)
-///     .build();
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     let zarinpal = Zarinpal::new("...")?;
 ///
-/// let result = built.await.unwrap();
+///     let built = VerifyPayment::builder()
+///         .amount(10000)
+///         .authority("A00000000000000000000000000217885159")
+///         // Takes a reference to your client.
+///         .zarinpal(&zarinpal)
+///         .build();
+///
+///     let result = built.await?;
+///
+///     Ok(())
+/// }
 /// ```
 ///
 /// But you may want to use an extension method to make your life brighter.
 ///
 /// _The example below is as the same of above._
 /// ```
-/// let built = zarinpal
-///     .verify_payment("A00000000000000000000000000217885159", 10000)
-///     .build();
+/// use zarinpal::prelude::*;
 ///
-/// let result = built.await.unwrap();
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     let zarinpal = Zarinpal::new("...")?;
+///
+///     let built = zarinpal
+///         .verify_payment("A00000000000000000000000000217885159", 10000)
+///         .build();
+///
+///     let result = built.await?;
+///     
+///     Ok(())
+/// }
 /// ```
 #[derive(Debug, Clone, Serialize, TypedBuilder)]
 pub struct VerifyPayment<'z, Z: ZarinpalClient> {

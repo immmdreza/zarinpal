@@ -3,7 +3,7 @@ members = [".", "test-bin"]
 
 [package]
 name = "zarinpal"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["immmdreza"]
 license-file = "LICENSE"
