@@ -59,28 +59,44 @@ pub struct Wage {
 /// on it when built.
 ///
 /// ```
-/// let zarinpal = Zarinpal::new(...).unwrap();
+/// use zarinpal::prelude::*;
 ///
-/// let built = RequestPayment::builder()
-///     .amount(10000)
-///     .callback_url("example.com")
-///     .description("...")
-///     // Takes a reference to your client.
-///     .zarinpal(&zarinpal)
-///     .build();
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     let zarinpal = Zarinpal::new("...")?;
 ///
-/// let result = built.await.unwrap();
+///     let built = RequestPayment::builder()
+///         .amount(10000)
+///         .callback_url("example.com")
+///         .description("...")
+///         // Takes a reference to your client.
+///         .zarinpal(&zarinpal)
+///         .build();
+///
+///     let result = built.await?;
+///
+///     Ok(())
+/// }
 /// ```
 ///
 /// But you may want to use an extension method to make your life brighter.
 ///
 /// _The example below is as the same of above._
 /// ```
-/// let built = zarinpal
-///     .request_payment(10000, "example.com", "...")
-///     .build();
+/// use zarinpal::prelude::*;
 ///
-/// let result = built.await.unwrap();
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     let zarinpal = Zarinpal::new("...")?;
+///
+///     let built = zarinpal
+///         .request_payment(10000, "example.com".parse()?, "...")
+///         .build();
+///
+///     let result = built.await?;
+///
+///     Ok(())
+/// }
 /// ```
 #[derive(Debug, Clone, Serialize, TypedBuilder)]
 pub struct RequestPayment<'z, Z: ZarinpalClient> {

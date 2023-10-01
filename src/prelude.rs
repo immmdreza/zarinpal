@@ -9,7 +9,9 @@ pub use crate::{
     error::ZarinResult,
     extensions::ZarinpalSendExtension,
     methods::{
-        request::{Currency, Metadata, Wage},
+        request::{Currency, Metadata, RequestPayment, Wage},
+        unverified::UnverifiedRequests,
+        verify::VerifyPayment,
         ApiMethod,
     },
     results::{

@@ -21,7 +21,7 @@ pub struct ApiError {
     ///
     /// Eg:
     ///
-    /// ```
+    /// ```json
     /// {
     ///     "merchant_id": [
     ///         "Merchant id is not a valid uuid."

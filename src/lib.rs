@@ -57,24 +57,41 @@ pub trait ZarinpalClient {
 ///
 /// Using `.send()` method to send api requests:
 /// ```
-/// // Merchant id from zarinpal dashboard.
-/// let merchant_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-/// // The new method fails if the `merchant_id` is invalid or can't create reqwest::Client.
-/// let zarinpal = Zarinpal::new(merchant_id)?;
+/// use zarinpal::prelude::*;
 ///
-/// let unverified = zarinpal.send(UnverifiedRequests::builder().build()).await?;
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     // Merchant id from zarinpal dashboard.
+///     let merchant_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+///     // The new method fails if the `merchant_id` is invalid or can't create reqwest::Client.
+///     let zarinpal = Zarinpal::new(merchant_id)?;
+///
+///     let unverified = UnverifiedRequests::builder()
+///         .zarinpal(&zarinpal)
+///         .build()
+///         .await?;
+///
+///     Ok(())
+/// }
 /// ```
 ///
 /// ### Example 2
 /// Let's verify 10 recent unverified payment requests.
 /// ```
-/// let zarinpal = Zarinpal::new("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")?();
-
-/// let unverified = zarinpal.unverified_requests().build().await?();
-/// for (i, request) in unverified.authorities().iter().enumerate().take(10) {
-///     let verify = request.verify(&zarinpal).await?();
+/// use zarinpal::prelude::*;
 ///
-///     println!("{}- {verify:#?}", i + 1)
+/// #[tokio::main]
+/// async fn main() -> Result::<(), Box<dyn std::error::Error>> {
+///     let zarinpal = Zarinpal::new("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")?;
+///
+///     let unverified = zarinpal.unverified_requests().build().await?;
+///     for (i, request) in unverified.authorities().iter().enumerate().take(10) {
+///         let verify = request.verify(&zarinpal).await?;
+///
+///         println!("{}- {verify:#?}", i + 1)
+///     }
+///
+///     Ok(())
 /// }
 /// ```
 #[derive(Debug, Clone)]
