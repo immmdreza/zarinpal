@@ -81,7 +81,6 @@ impl<'z, Z: ZarinpalClient> ApiMethod for VerifyPayment<'z, Z> {
 
 #[cfg(test)]
 mod tests {
-    use crate::prelude::ZarinpalSendExtension;
     use crate::Zarinpal;
 
     use super::*;
@@ -125,16 +124,5 @@ mod tests {
                 ()
             })
         }
-    }
-
-    #[tokio::test]
-    async fn test_send_request() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
-
-        let built = zarinpal
-            .verify_payment("A00000000000000000000000000217885159", 10000)
-            .build();
-
-        let _result = built.await.unwrap();
     }
 }

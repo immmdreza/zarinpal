@@ -10,12 +10,12 @@ async fn main() -> anyhow::Result<()> {
         .build()
         .await?;
 
-    let verified = zarinpal
+    let _verified = zarinpal
         .verify_payment(request.authority(), 10000)
         .build()
         .await?;
 
-    let request_2 = zarinpal
+    let _request_2 = zarinpal
         .request_payment(10000, "example.com".parse()?, "Test payment")
         .metadata(
             Metadata::builder()
@@ -26,13 +26,13 @@ async fn main() -> anyhow::Result<()> {
         .build()
         .await?;
 
-    let request_3 = zarinpal
+    let _request_3 = zarinpal
         .request_payment(10000, "example.com".parse()?, "Test payment")
         .currency(Currency::IRT) // Tomans
         .build()
         .await?;
 
-    let request_4 = zarinpal
+    let _request_4 = zarinpal
         .request_payment(10000, "example.com".parse()?, "Test payment")
         .wages([
             Wage::builder()
