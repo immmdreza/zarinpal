@@ -6,7 +6,9 @@ name = "zarinpal"
 version = "0.1.0"
 edition = "2021"
 authors = ["immmdreza"]
+license-file = "LICENSE"
 description = "Zarinpal Payment Gateway Api."
+repository = "https://github.com/immmdreza/zarinpal"
 readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
