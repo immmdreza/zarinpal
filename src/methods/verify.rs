@@ -103,7 +103,7 @@ mod tests {
 
     #[test]
     fn test_serialization() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let raw_json = serde_json::json!({
             "merchant_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",

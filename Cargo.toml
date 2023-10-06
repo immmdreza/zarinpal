@@ -14,12 +14,14 @@ readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[dev-dependencies]
+tokio = { version = "1.32", features = ["rt-multi-thread", "macros"] }
+serde_json = { version = "1.0" }
+
 [dependencies]
-uuid = { version = "1.4", features = ["v4"] }
+uuid = { version = "1.4" }
 thiserror = { version = "1.0" }
 serde = { version = "1.0", features = ["derive"] }
 reqwest = { version = "0.11", features = ["json"] }
-serde_json = { version = "1.0" }
-tokio = { version = "1.32", features = ["rt-multi-thread", "macros"] }
 typed-builder = { version = "0.16" }
 async-trait = { version = "0.1" }

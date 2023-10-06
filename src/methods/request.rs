@@ -168,7 +168,7 @@ mod tests {
 
     #[test]
     fn test_serialization() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let raw_json = serde_json::json!({
             "merchant_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -206,7 +206,7 @@ mod tests {
 
     #[test]
     fn test_serialization_with_currency() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let raw_json = serde_json::json!({
           "merchant_id": "1344b5d4-0048-11e8-94db-005056a205be",
@@ -241,7 +241,7 @@ mod tests {
 
     #[test]
     fn test_serialization_with_wages() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let raw_json = serde_json::json!({
           "merchant_id": "1344b5d4-0048-11e8-94db-005056a205be",
@@ -301,7 +301,7 @@ mod tests {
 
     #[test]
     fn test_serialization_with_card_pan() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let raw_json = serde_json::json!({
             "merchant_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",

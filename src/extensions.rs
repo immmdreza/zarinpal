@@ -70,7 +70,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_1() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let unverified = zarinpal.unverified_requests().build().await;
         println!("{unverified:#?}")
@@ -78,7 +78,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_2() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let unverified = zarinpal
             .request_payment(
@@ -94,7 +94,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_3() {
-        let zarinpal = Zarinpal::new(uuid::Uuid::new_v4().to_string().as_str()).unwrap();
+        let zarinpal = Zarinpal::new_test().unwrap();
 
         let unverified = zarinpal
             .request_payment(

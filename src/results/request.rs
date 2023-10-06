@@ -7,6 +7,7 @@ use super::{result_code::ResultCode, verify::FeeType, RequestResult};
 pub struct Request {
     code: ResultCode,
     message: String,
+
     /// Unique authority of the payment request.
     authority: String,
 
@@ -15,6 +16,17 @@ pub struct Request {
 
     /// Fee amount.
     fee: u64,
+}
+
+impl Request {
+    /// Returns a url to the zarinpal payment gateway for this payment request (`authority` attached.)
+    ///
+    /// _This is the url that user should be redirected to, after a successful payment request._
+    pub fn gateway_url(&self) -> reqwest::Url {
+        format!("https://www.zarinpal.com/pg/StartPay/{}", self.authority())
+            .parse()
+            .unwrap()
+    }
 }
 
 impl Request {

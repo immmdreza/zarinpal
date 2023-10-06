@@ -15,6 +15,9 @@ pub mod methods;
 pub mod prelude;
 pub mod results;
 
+#[cfg(test)]
+const TEST_UUID: &'static str = "0f6deacb-a130-4d23-b4ae-b1121d2764fd";
+
 /// [`ZarinpalClient`] is an interface to all zarinpal payment gateway api clients.
 /// This will be useful to implement extension methods on everything that implements this.
 ///
@@ -154,5 +157,10 @@ impl Zarinpal {
             // merchant_id_uuid,
             base_url: "https://api.zarinpal.com/".parse().unwrap(),
         })
+    }
+
+    #[cfg(test)]
+    pub(crate) fn new_test() -> Result<Zarinpal, uuid::Error> {
+        Self::new(TEST_UUID)
     }
 }
